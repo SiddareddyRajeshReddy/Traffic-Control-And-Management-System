@@ -45,8 +45,7 @@ $recent_violations = [];
 $query = "SELECT v.violation_id, v.vehicle_number, v.violation_date, v.fine_amount, v.status 
           FROM violation v
           WHERE v.officer_id = $officer_id
-          ORDER BY v.violation_date DESC 
-          LIMIT 3";
+          ORDER BY v.violation_date DESC";
 $result = mysqli_query($conn, $query);
 if ($result) {
     while ($row = mysqli_fetch_assoc($result)) {

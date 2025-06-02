@@ -48,7 +48,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
         $path = '../../assets/users/' . $row['vehicle_no'];
         if (is_dir($path)) {
             array_map('unlink', glob("$path/*.*"));
-            rmdir($path); 
+            rmdir($path);
         }
         $body = "Dear $name,<br>Your vehicle registration was <b>rejected</b> in the E-Fine system.<br>Please re-register.<br>Thank You.";
     }
@@ -84,7 +84,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <?php if (mysqli_num_rows($result) > 0): ?>
                 <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                   <div class="bg-gradient-to-br from-green-100 to-teal-50 border border-green-300 rounded-2xl p-6 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition duration-300 ease-in-out">
+                    <div class="bg-gradient-to-br from-green-100 to-teal-50 border border-green-300 rounded-2xl p-6 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition duration-300 ease-in-out">
                         <div class="flex justify-between items-center mb-4">
                             <h2 class="text-xl font-bold text-blue-900"><?php echo htmlspecialchars($row['name']); ?></h2>
                             <span class="px-3 py-1 text-sm font-semibold rounded-full bg-yellow-300 text-yellow-900">
@@ -99,26 +99,28 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
                         </div>
 
                         <div class="flex flex-wrap gap-4 mb-6">
-                            <?php 
+                            <?php
                             $docs = ['aadhar.png' => 'Aadhar', 'photo.png' => 'Profile', 'rc.png' => 'RC', 'license.png' => 'License'];
-                            foreach ($docs as $file => $label): 
+                            foreach ($docs as $file => $label):
                             ?>
                                 <div class="relative group">
-                                    <img src="../../assets/images/users/<?php echo htmlspecialchars($row['vehicle_no']); ?>/<?php echo $file; ?>" 
-                                        alt="No <?php echo $label; ?>" 
-                                        class="w-20 h-20 rounded-lg border-2 border-blue-200 object-cover shadow-sm group-hover:scale-105 transition-transform duration-300">
+                                    <a href="../../assets/images/users/<?php echo htmlspecialchars($row['vehicle_no']); ?>/<?php echo $file; ?>" target="_blank" rel="noopener noreferrer">
+                                        <img src="../../assets/images/users/<?php echo htmlspecialchars($row['vehicle_no']); ?>/<?php echo $file; ?>"
+                                            alt="No <?php echo $label; ?>"
+                                            class="w-20 h-20 rounded-lg border-2 border-blue-200 object-cover shadow-sm group-hover:scale-105 transition-transform duration-300">
+                                    </a>
                                 </div>
                             <?php endforeach; ?>
                         </div>
 
                         <div class="flex gap-4">
-                            <a href="?action=approve&id=<?php echo $row['user_id']; ?>" onclick="return confirm('Approve this registration?')" 
-                               class="flex-1 text-center bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded-lg shadow-sm transition">
-                               Approve
+                            <a href="?action=approve&id=<?php echo $row['user_id']; ?>" onclick="return confirm('Approve this registration?')"
+                                class="flex-1 text-center bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded-lg shadow-sm transition">
+                                Approve
                             </a>
-                            <a href="?action=reject&id=<?php echo $row['user_id']; ?>" onclick="return confirm('Reject this registration?')" 
-                               class="flex-1 text-center bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-lg shadow-sm transition">
-                               Reject
+                            <a href="?action=reject&id=<?php echo $row['user_id']; ?>" onclick="return confirm('Reject this registration?')"
+                                class="flex-1 text-center bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded-lg shadow-sm transition">
+                                Reject
                             </a>
                         </div>
                     </div>

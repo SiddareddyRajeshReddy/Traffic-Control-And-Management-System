@@ -19,7 +19,7 @@ $query = "SELECT v.*,
           JOIN rules r ON v.violation_type = r.rule_id
           LEFT JOIN user u ON v.user_id = u.user_id
           WHERE v.officer_id IN (SELECT officer_id FROM officer WHERE badge_number = ?)
-          ORDER BY v.violation_date DESC";
+          ORDER BY v.violation_date ASC";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("s", $b_no);
 $stmt->execute();

@@ -36,7 +36,6 @@ $result = mysqli_query($conn, "
     JOIN officer o ON v.officer_id = o.officer_id
     JOIN user u ON v.user_id = u.user_id
     ORDER BY v.violation_date DESC
-    LIMIT 50
 ");
 while ($row = mysqli_fetch_assoc($result)) {
     $recentViolations[] = $row;
